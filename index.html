@@ -339,6 +339,24 @@
 
     .community-link:hover { background: var(--accent-light); }
 
+    .community-link--merch { grid-column: span 2; padding: 1rem; }
+    .community-link--merch .merch-thumb { width: 100%; border-radius: 4px; display: block; margin-top: 0.5rem; }
+
+    .merch-preview {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 200;
+      width: min(720px, 90vw);
+      border-radius: 8px;
+      box-shadow: 0 0 0 100vmax rgba(0,0,0,0.55), 0 24px 80px rgba(0,0,0,0.6);
+      pointer-events: none;
+    }
+
+    .community-link--merch:hover .merch-preview { display: block; }
+
     .community-link-label {
       font-family: var(--mono);
       font-size: 0.7rem;
@@ -412,6 +430,52 @@
       fill: currentColor;
     }
 
+    /* NEWS */
+    .news-list { display: flex; flex-direction: column; gap: 1.25rem; }
+
+    .news-item {
+      border-left: 3px solid var(--accent);
+      padding: 0.75rem 1rem;
+      background: var(--surface);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .news-item-date {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.35rem;
+    }
+
+    .news-item-title {
+      font-family: var(--mono);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      display: block;
+    }
+
+    .news-item-title:hover { color: var(--accent-hover); }
+
+    .news-item-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 0.35rem;
+      line-height: 1.5;
+    }
+
+    .news-rss {
+      margin-top: 1.5rem;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+    }
+
+    .news-rss a { color: var(--muted); text-decoration: none; }
+    .news-rss a:hover { color: var(--accent); }
+
     @media (max-width: 640px) {
       nav .links { gap: 1rem; }
       nav a:not(.btn) { display: none; }
@@ -427,6 +491,7 @@
     <div class="links">
       <a href="#install">⚙️ Install</a>
       <a href="#status">🚦 Status</a>
+      <a href="#news">📰 News</a>
       <a href="https://docs.freeunit.org">📚 Docs</a>
       <a href="https://t.me/freeunit_support"><svg class="tg-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg> Telegram</a>
       <a href="https://github.com/freeunitorg/freeunit">🐙 GitHub</a>
@@ -437,7 +502,7 @@
 
 <div class="hero">
   <div class="container">
-    <div class="tag">Community LTS Fork · April 2026</div>
+    <div class="tag">Community LTS Fork · since April 2026</div>
     <h1>Free<em>Unit</em><span class="cursor"></span></h1>
     <p class="hero-sub">
       Unit application server, continued by the community.<br>
@@ -493,6 +558,16 @@
         <div class="goal-title">🤝 Community Governed</div>
         <div class="goal-desc">No corporate control. Decisions made by active contributors.</div>
       </div>
+      <div class="goal">
+        <div class="goal-num">05</div>
+        <div class="goal-title">🌐 WebAssembly</div>
+        <div class="goal-desc">Native wasmtime runtime. WASM modules run alongside PHP, Go, and Node.js apps.</div>
+      </div>
+      <div class="goal">
+        <div class="goal-num">06</div>
+        <div class="goal-title">🚀 Current Runtimes</div>
+        <div class="goal-desc">Go 1.26, Node.js 24, PHP 8.5. Runtime versions tracked and updated with each release.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -509,7 +584,8 @@
       <span class="cmd">sudo make</span> unitd-install
     </div>
     <div class="install-note">
-      Official packages and Docker images are coming soon.<br>
+      Official packages are coming soon.<br>
+      Docker images are available — see <a href="https://github.com/freeunitorg/freeunit">GitHub</a>.<br>
       PHP 8.5 support requires FreeUnit — not available in the archived upstream.
     </div>
   </div>
@@ -556,12 +632,12 @@
       <div class="status-row">
         <div class="dot green"></div>
         <div class="status-label">PHP 8.5 working build</div>
-        <div class="status-note">1.35.3</div>
+        <div class="status-note">1.35.4</div>
       </div>
       <div class="status-row">
         <div class="dot green"></div>
         <div class="status-label">Docker images</div>
-        <div class="status-note">1.35.3</div>
+        <div class="status-note">1.35.4</div>
       </div>
       <div class="status-row">
         <div class="dot green"></div>
@@ -571,7 +647,7 @@
       <div class="status-row">
         <div class="dot green"></div>
         <div class="status-label">unitctl binaries</div>
-        <div class="status-note">1.35.3</div>
+        <div class="status-note">1.35.4</div>
       </div>
       <div class="status-row">
         <div class="dot red"></div>
@@ -584,6 +660,30 @@
         <div class="status-note">in negotiation</div>
       </div>
     </div>
+  </div>
+</section>
+
+<section id="news">
+  <div class="container">
+    <h2>📰 Latest News</h2>
+    <div class="news-list">
+      <div class="news-item">
+        <div class="news-item-date">30 Apr 2026</div>
+        <a class="news-item-title" href="https://docs.freeunit.org/news/2026/unit-1.35.4-released">Unit 1.35.4 Released</a>
+        <div class="news-item-desc">Fix router CPU spin and connection hang under port scanning load; reduce default HTTP keep-alive idle_timeout to 30s.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-item-date">7 Apr 2026</div>
+        <a class="news-item-title" href="https://docs.freeunit.org/news/2026/unit-1.35.3-released">Unit 1.35.3 Released</a>
+        <div class="news-item-desc">Migrate contrib mirror to packages.freeunit.org; upgrade njs to 0.9.6, libunit-wasm to 0.5.0, wasmtime to 43; add Java support improvements.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-item-date">4 Apr 2026</div>
+        <a class="news-item-title" href="https://docs.freeunit.org/news/2026/unit-1.35.2-released">Unit 1.35.2 Released</a>
+        <div class="news-item-desc">Bug-fix release — PHP workers in TrueAsync mode now shut down cleanly on quit signal; fix builds against PHP versions that differ from build-time.</div>
+      </div>
+    </div>
+    <p class="news-rss"><a href="https://docs.freeunit.org/rss.xml">RSS feed →</a></p>
   </div>
 </section>
 
@@ -614,6 +714,12 @@
       <a href="https://github.com/freeunitorg/freeunit/blob/master/CONTRIBUTING.md" class="community-link">
         <div class="community-link-label">🤝 Contributing</div>
         <div class="community-link-value">CONTRIBUTING.md →</div>
+      </a>
+      <a href="https://github.com/freeunitorg/freeunit" class="community-link community-link--merch">
+        <div class="community-link-label">⚡ Build FreeUnit</div>
+        <img class="merch-thumb" src="FreeUnit.merch.draft.jpg" alt="FreeUnit community swag">
+        <img class="merch-preview" src="FreeUnit.merch.draft.jpg" alt="">
+        <div class="community-link-value" style="margin-top:0.75rem;">Fork. Fix. Ship. →</div>
       </a>
     </div>
   </div>
