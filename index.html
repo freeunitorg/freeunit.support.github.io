@@ -476,6 +476,60 @@
     .news-rss a { color: var(--muted); text-decoration: none; }
     .news-rss a:hover { color: var(--accent); }
 
+    /* EOL TABLE */
+    .eol-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      border: 1px solid var(--border);
+    }
+
+    .eol-table th {
+      background: var(--bg);
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 0.68rem;
+      padding: 0.5rem 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .eol-table td {
+      padding: 0.45rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .eol-table tr:last-child td { border-bottom: none; }
+    .eol-table tr:hover td { background: var(--accent-light); }
+
+    .eol-policy {
+      margin-bottom: 1.5rem;
+      padding: 1rem 1.25rem;
+      background: var(--accent-light);
+      border-left: 3px solid var(--accent);
+      font-size: 0.85rem;
+      color: var(--text);
+    }
+
+    .eol-section-title {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 1.5rem 0 0.75rem;
+    }
+
+    .eol-footnote {
+      margin-top: 0.75rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-family: var(--mono);
+    }
+
     @media (max-width: 640px) {
       nav .links { gap: 1rem; }
       nav a:not(.btn) { display: none; }
@@ -525,7 +579,8 @@
   <div class="container">
     <span class="lineage-label">In the lineage of</span>
     <div class="lineage-items">
-      <span class="lineage-item">freenginx</span>
+      <span class="lineage-item"><a href="https://en.angie.software/angie/docs/" style="text-decoration:none;color:inherit;">Angie</a></span>
+      <span class="lineage-item"><a href="https://freenginx.org/" style="text-decoration:none;color:inherit;">freenginx</a></span>
       <span class="lineage-item">MariaDB</span>
       <span class="lineage-item">LibreOffice</span>
       <span class="lineage-item">OpenSSH</span>
@@ -585,7 +640,7 @@
     </div>
     <div class="install-note">
       Official packages are coming soon.<br>
-      Docker images are available — see <a href="https://github.com/freeunitorg/freeunit">GitHub</a>.<br>
+      Docker images are available — see <a href="https://github.com/freeunitorg/freeunit/pkgs/container/freeunit">GitHub Packages</a>.<br>
       PHP 8.5 support requires FreeUnit — not available in the archived upstream.
     </div>
   </div>
@@ -660,6 +715,87 @@
         <div class="status-note">in negotiation</div>
       </div>
     </div>
+  </div>
+</section>
+
+<section id="eol">
+  <div class="container">
+    <h2>Support Policy (EOL)</h2>
+    <div class="eol-policy">
+      Runtimes are supported for <strong>1 year after upstream EOL</strong>.<br>
+      OS versions are supported for <strong>3 years after upstream EOL</strong>.<br>
+      Dates tracked at <a href="https://endoflife.date">endoflife.date</a>.
+      Versions within 6 months of removal receive security patches only.
+    </div>
+
+    <div class="eol-section-title">Runtimes</div>
+    <table class="eol-table">
+      <thead>
+        <tr>
+          <th>Runtime</th>
+          <th>Version</th>
+          <th>Upstream EOL</th>
+          <th>FreeUnit support</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Go</td><td>1.24</td><td>Feb 2026</td><td>Feb 2027</td></tr>
+        <tr><td>Go</td><td>1.25</td><td>Aug 2026</td><td>Aug 2027</td></tr>
+        <tr><td>Go</td><td>1.26</td><td>Feb 2027</td><td>Feb 2028</td></tr>
+        <tr><td>Java (JSC)</td><td>17 (LTS)</td><td>Sep 2029</td><td>Sep 2030</td></tr>
+        <tr><td>Java (JSC)</td><td>21 (LTS)</td><td>Sep 2031</td><td>Sep 2032</td></tr>
+        <tr><td>Node.js</td><td>20 (LTS)</td><td>Apr 2026</td><td>Apr 2027</td></tr>
+        <tr><td>Node.js</td><td>22 (LTS)</td><td>Apr 2027</td><td>Apr 2028</td></tr>
+        <tr><td>Node.js</td><td>24 (LTS)</td><td>Apr 2028</td><td>Apr 2029</td></tr>
+        <tr><td>Perl</td><td>5.38</td><td>Jul 2026</td><td>Jul 2027</td></tr>
+        <tr><td>Perl</td><td>5.40</td><td>Jul 2028</td><td>Jul 2029</td></tr>
+        <tr><td>PHP</td><td>8.3</td><td>Dec 2027</td><td>Dec 2028</td></tr>
+        <tr><td>PHP</td><td>8.4</td><td>Dec 2028</td><td>Dec 2029</td></tr>
+        <tr><td>PHP</td><td>8.5</td><td>Dec 2029</td><td>Dec 2030</td></tr>
+        <tr><td>Python</td><td>3.12</td><td>Oct 2028</td><td>Oct 2029</td></tr>
+        <tr><td>Python</td><td>3.13</td><td>Oct 2029</td><td>Oct 2030</td></tr>
+        <tr><td>Python</td><td>3.14</td><td>Oct 2030</td><td>Oct 2031</td></tr>
+        <tr><td>Ruby</td><td>3.3</td><td>Mar 2027</td><td>Mar 2028</td></tr>
+        <tr><td>Ruby</td><td>3.4</td><td>Mar 2028</td><td>Mar 2029</td></tr>
+        <tr><td>WebAssembly</td><td>—</td><td>no EOL</td><td>—</td></tr>
+      </tbody>
+    </table>
+
+    <div class="eol-section-title">Operating Systems</div>
+    <table class="eol-table">
+      <thead>
+        <tr>
+          <th>OS</th>
+          <th>Version</th>
+          <th>Upstream EOL</th>
+          <th>FreeUnit support</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Fedora</td><td>40 †</td><td>2025-05</td><td>2028-05</td></tr>
+        <tr><td>Fedora</td><td>41 †</td><td>2025-12</td><td>2028-12</td></tr>
+        <tr><td>Fedora</td><td>42</td><td>2026-05</td><td>2029-05</td></tr>
+        <tr><td>Fedora</td><td>43</td><td>2026-12</td><td>2029-12</td></tr>
+        <tr><td>CentOS Stream</td><td>9</td><td>2027-05</td><td>2030-05</td></tr>
+        <tr><td>CentOS Stream</td><td>10</td><td>2035-05</td><td>2038-05</td></tr>
+        <tr><td>Amazon Linux</td><td>2</td><td>2026-06</td><td>2029-06</td></tr>
+        <tr><td>Amazon Linux</td><td>2023</td><td>2029-06</td><td>2032-06</td></tr>
+        <tr><td>Ubuntu LTS</td><td>22.04</td><td>2027-04</td><td>2030-04</td></tr>
+        <tr><td>Ubuntu LTS</td><td>24.04</td><td>2029-05</td><td>2032-05</td></tr>
+        <tr><td>Ubuntu LTS</td><td>26.04</td><td>2031-05</td><td>2034-05</td></tr>
+        <tr><td>Debian</td><td>10 buster †</td><td>2024-06</td><td>2027-06</td></tr>
+        <tr><td>Debian</td><td>11 bullseye †</td><td>2026-08</td><td>2029-08</td></tr>
+        <tr><td>Debian</td><td>12 bookworm</td><td>2028-06</td><td>2031-06</td></tr>
+        <tr><td>Debian</td><td>13 trixie</td><td>2030-06</td><td>2033-06</td></tr>
+        <tr><td>RHEL</td><td>8</td><td>2029-05</td><td>2032-05</td></tr>
+        <tr><td>RHEL</td><td>9</td><td>2032-05</td><td>2035-05</td></tr>
+        <tr><td>RHEL</td><td>10</td><td>2035-05</td><td>2038-05</td></tr>
+        <tr><td>Alpine</td><td>3.20</td><td>2026-11</td><td>2029-11</td></tr>
+        <tr><td>Alpine</td><td>3.21</td><td>2027-11</td><td>2030-11</td></tr>
+      </tbody>
+    </table>
+    <div class="eol-footnote">† OS has passed upstream EOL; in FreeUnit's 3-year grace period.</div>
+    <p class="news-rss" style="margin-top:1rem;"><a href="https://github.com/freeunitorg/freeunit/blob/master/EOL.md">EOL.md on GitHub →</a></p>
   </div>
 </section>
 
